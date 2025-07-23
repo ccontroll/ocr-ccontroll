@@ -17,7 +17,7 @@ errorlog = f"{BASEDIR}/gunicorn/error.log"
 # Redirect stdout/stderr to log file
 capture_output = True
 # Restart workers when code changes (development only!)
-reload = True
+reload = False
 # PID file so you can easily fetch process ID
 pidfile = f"{BASEDIR}/gunicorn/prod.pid"
 # Daemonize the Gunicorn process (detach & enter background)

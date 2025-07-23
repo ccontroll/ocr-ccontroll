@@ -17,6 +17,7 @@ redis_conn = redis.Redis()
 
 @job
 def leitor(sources: list, callback_url: str):
+    print(f"Received sources: {sources}, callback_url: {callback_url}")
     batch_id = str(uuid.uuid4())
     total = len(sources)
     # contador inicial a zero
@@ -29,6 +30,7 @@ def leitor(sources: list, callback_url: str):
 
 @job
 def convert_source(source_id, link, batch_id, callback_url, total):
+    print(f"Converting source {source_id} from {link} in batch {batch_id}")
     try:
         result = CONVERTER.convert(link)
         md = result.document.export_to_markdown()
@@ -55,6 +57,7 @@ def convert_source(source_id, link, batch_id, callback_url, total):
 
 @job
 def send_callback(callback_url, data):
+    print(f"Sending callback to {callback_url}")
     import requests
     try:
         r = requests.post(callback_url, json=data)
