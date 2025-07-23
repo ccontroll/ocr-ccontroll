@@ -2,8 +2,17 @@
 
 import multiprocessing
 import os
+from api.settings import DEBUG
+
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
+
+ambiente = f"{BASEDIR}/env/bin/python3"
+
+if not DEBUG:
+    ambiente = "/opt/venv/bin/python3"
+
+
 
 # Django WSGI application path in pattern MODULE_NAME:VARIABLE_NAME
 wsgi_app = "api.wsgi:application"
@@ -27,7 +36,7 @@ import subprocess
 import errno
 
 # Caminho completo para o executável do rqworker
-command = f"{BASEDIR}/env/bin/python3"
+command = ambiente
 args = ["manage.py", "rqworker"] # Argumentos para o comando
 PID_FILE = f"{BASEDIR}/gunicorn/rq.pid"
 
