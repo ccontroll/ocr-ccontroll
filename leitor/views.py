@@ -12,7 +12,7 @@ def hello(request):
 def upload(request):
     if request.method == 'POST':
         callback_url = request.POST.get('callback_url')
-        files = request.POST.get['files']
+        files = request.POST.get('files')
         # Process the file here
         if files and callback_url:
             res = leitor.delay(files)
