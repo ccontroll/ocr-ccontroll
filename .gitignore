@@ -418,5 +418,5 @@ FodyWeavers.xsd
 *.msp
 
 env
-
 *.pyc
+db.sqlite3
