@@ -4,6 +4,7 @@ from django_rq import job
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import PdfPipelineOptions
+import os
 
 # setup OCR
 pipeline_options = PdfPipelineOptions()
@@ -13,7 +14,11 @@ CONVERTER = DocumentConverter({
 })
 
 # conexão Redis para armazenar resultados temporários
-redis_conn = redis.Redis()
+redis_conn = redis.Redis(
+    host=os.environ['HOST_REDIS'],
+    port=os.environ['PORT_REDIS'],
+    password=os.environ['PASSWORD_REDIS']
+)
 
 @job
 def leitor(sources: list, callback_url: str):

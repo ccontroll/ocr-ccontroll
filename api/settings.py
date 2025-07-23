@@ -132,7 +132,7 @@ RQ_QUEUES = {
         'HOST': os.environ['HOST_REDIS'], # Ou o IP do seu servidor Redis
         'PORT': os.environ['PORT_REDIS'],
         'DB': os.environ['DB_REDIS'],
-        'PASSWORD': None , # Se o seu Redis tiver senha --> os.environ['PASSWORD_REDIS']
+        'PASSWORD': os.environ['PASSWORD_REDIS'] or None,
         'DEFAULT_TIMEOUT': os.environ['DEFAULT_TIMEOUT_REDIS'], # Tempo limite padrão para tarefas (em segundos)
     }
 }
