@@ -69,14 +69,13 @@ def run_worker():
     except Exception as e:
         print(f"Ocorreu um erro ao iniciar o RQ Worker: {e}")
 
-if os.path.exists(PID_FILE):
-    try:
-        with open(PID_FILE, 'r') as f:
-            existing_pid = int(f.read().strip())
-        if is_pid_active(existing_pid):
-            pass
-        else:
-            run_worker()
-    except Exception:
-        # PID inválido: inicia o RQ Worker
+try:
+    with open(PID_FILE, 'r') as f:
+        existing_pid = int(f.read().strip())
+    if is_pid_active(existing_pid):
+        pass
+    else:
         run_worker()
+except Exception:
+    # PID inválido: inicia o RQ Worker
+    run_worker()
