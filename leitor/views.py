@@ -3,7 +3,9 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from api.task import leitor
 
+@csrf_exempt
 def hello(request):
+
     return HttpResponse("Hello world")
 
 @csrf_exempt
