@@ -421,4 +421,3 @@ env
 *.pyc
 db.sqlite3
 teste*.pdf
-gunicorn/*
